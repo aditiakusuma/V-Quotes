@@ -1,11 +1,14 @@
 <template>
   <div class="container">
-    <quotesGridTemplate :quotes="quotes"></quotesGridTemplate>
+    <!-- addedQuote mengacu ke amit -->
+    <new-quote-template @addedQuote="newQuote"></new-quote-template>
+    <quoteGridTemplate :quotes="quotes"></quoteGridTemplate>
   </div>
 </template>
 
 <script>
-import QuotesGrid from "./components/QuoteGrid.vue";
+import QuoteGrid from "./components/QuoteGrid.vue";
+import NewQuote from "./components/NewQuote.vue";
 
 export default {
   data: function() {
@@ -15,7 +18,15 @@ export default {
     };
   },
   components: {
-    quotesGridTemplate: QuotesGrid
+    quoteGridTemplate: QuoteGrid,
+    newQuoteTemplate: NewQuote
+  },
+  methods: {
+    //parameter quote di ambil dari emit
+    newQuote(quote) {
+      // ambil variable quote dari parameter dan push ke data quotes
+      this.quotes.push(quote);
+    }
   }
 };
 </script>
