@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <progressBar :quoteCount="quotes.length" :maxQuotes="maxQuotes"></progressBar>
     <!-- addedQuote mengacu ke amit -->
     <new-quote-template @addedQuote="newQuote"></new-quote-template>
     <quoteGridTemplate :quotes="quotes" @quoteDeleted="deleteQuote"></quoteGridTemplate>
@@ -14,6 +15,7 @@
 <script>
 import QuoteGrid from "./components/QuoteGrid.vue";
 import NewQuote from "./components/NewQuote.vue";
+import Header from "./components/Header.vue";
 
 export default {
   data: function() {
@@ -24,11 +26,15 @@ export default {
   },
   components: {
     quoteGridTemplate: QuoteGrid,
-    newQuoteTemplate: NewQuote
+    newQuoteTemplate: NewQuote,
+    progressBar: Header
   },
   methods: {
     //parameter quote di ambil dari emit
     newQuote(quote) {
+      if (this.quotes.length >= this.maxQuotes) {
+        return alert("HEYY ITS FULL, DELETE ONE");
+      }
       // ambil variable quote dari parameter dan push ke data quotes
       this.quotes.push(quote);
     },
