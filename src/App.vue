@@ -2,7 +2,12 @@
   <div class="container">
     <!-- addedQuote mengacu ke amit -->
     <new-quote-template @addedQuote="newQuote"></new-quote-template>
-    <quoteGridTemplate :quotes="quotes"></quoteGridTemplate>
+    <quoteGridTemplate :quotes="quotes" @quoteDeleted="deleteQuote"></quoteGridTemplate>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <div class="alert alert-danger" role="alert">Click on quote to delete it!</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,6 +31,9 @@ export default {
     newQuote(quote) {
       // ambil variable quote dari parameter dan push ke data quotes
       this.quotes.push(quote);
+    },
+    deleteQuote(index) {
+      this.quotes.splice(index, 1);
     }
   }
 };
