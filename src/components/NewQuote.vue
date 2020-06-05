@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <form class="container center">
+    <form class="container col-md-6 text-center">
       <div class="form-group">
         <label>Quotes</label>
         <textarea class="form-control" rows="3" v-model="quote"></textarea>
